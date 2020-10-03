@@ -1,0 +1,8 @@
+# noinspection PyUnresolvedReferences
+from text_parser.generated_parsers.Python3.InputGrammarLexer import InputGrammarLexer
+
+# noinspection PyUnresolvedReferences
+from text_parser.generated_parsers.Python3.InputGrammarListener import InputGrammarListener
+
+# noinspection PyUnresolvedReferences
+from text_parser.generated_parsers.Python3.InputGrammarParser import InputGrammarParser
