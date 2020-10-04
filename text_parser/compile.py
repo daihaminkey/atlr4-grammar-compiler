@@ -32,6 +32,12 @@ def get_commandline_args() -> ConfigFromArgs:
     parser.add_argument('-r', '-root', type=str, default='root', dest='root', metavar='root',
                         help='Правило, с которого будет начинаться разбор [ root ] ')
 
+    parser.add_argument('-j', '-jar', type=str, default='../antlr-4.7.2-complete.jar', dest='jar', metavar='jar',
+                        help='Путь до скомпилированной библиотеки antlr4. К проекту прилагается по адресу [ ../antlr-4.7.2-complete.jar ]')
+
+    parser.add_argument('-o', '-output', type=str, default='./generated_parsers', dest='output', metavar='output',
+                        help='Задает каталог, в котором будут созданы классы listerner`ов [ generated_parsers ]')
+
     parser.add_argument('-f', '-force', action='store_true', default=False, dest='force',
                         help='Принудительно рекомпилировать грамматику')
 
@@ -40,6 +46,7 @@ def get_commandline_args() -> ConfigFromArgs:
 
     parser.add_argument('-gui', '-gui_test', action='store_true', default=False, dest='gui_test',
                         help='Вывести GUI с деревом разбора (добавит Java к языкам для компиляции), требует JDK')
+
 
     # TODO [-gui|gui_test] path   | run test rig not on the hardcoded file
 
@@ -62,7 +69,11 @@ def get_commandline_args() -> ConfigFromArgs:
             is_tests_forced=args.test,
             is_gui_test_needed=args.gui_test,
         ),
-        PathConfig()  # TODO add configuration options to cli
+        PathConfig(
+            jar_path=Path(args.jar),
+            output_dir=Path(args.output),
+            test_dir = Path('../tests')
+        )
     )
 
 
